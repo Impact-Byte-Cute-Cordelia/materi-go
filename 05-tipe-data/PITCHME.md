@@ -1,7 +1,11 @@
-# Agenda 
+---
+marp: true
+---
 
-1. Tipe Data, 
-2. Variabel 
+# Agenda
+
+1. Tipe Data,
+2. Variabel
 3. Kendali Alur
 4. Package Dependency
 
@@ -25,7 +29,7 @@
 
 # Case Penggunaan
 
-> Saat kita menyimpan data gaji, maka kita akan menyimpannya dengan tipe data angka (numeric), bukan teks 
+> Saat kita menyimpan data gaji, maka kita akan menyimpannya dengan tipe data angka (numeric), bukan teks
 
 
 ---
@@ -41,7 +45,7 @@
 # Numeric Non Desimal
 
 - `uint` untuk tipe data bilangan cacah positif
-- `int` untuk tipe data bilangan cacah negative dan positif 
+- `int` untuk tipe data bilangan cacah negative dan positif
 
 ---
 
@@ -67,7 +71,7 @@ import "fmt"
 func main() {
    var angkaKecil uint8 = 254
    var angkaBesar = 2333224443333
-   
+
    fmt.Printf("Bilangan positive : %d\n", angkaKecil)
    fmt.Printf("Bilangan positive besar : %d\n", angkaBesar)
 }
@@ -147,7 +151,7 @@ Semua operasi matematika bisa dilakukan untuk data-data ini (`+`, `-`. `:`, `*`,
 ---
 
 > # ?
-> Apa yang terjadi jika operasi terhadap float dan integer digabung? 
+> Apa yang terjadi jika operasi terhadap float dan integer digabung?
 
 ---
 
@@ -170,7 +174,7 @@ import "fmt"
 
 func main() {
     var name string = "Hallo"
-    
+
     fmt.Printf("%s", name)
 }
 
@@ -245,8 +249,8 @@ func main() {
    var CanReadStory bool
    var CommentCount uint8
    var Sallary float32
-   
-   
+
+
    fmt.Printf("%s\n", Name)
    fmt.Printf("%t\n", CanReadStory)
    fmt.Printf("%d\n", CommentCount)
@@ -347,7 +351,7 @@ umur_anak := 9
 
 ```
 func list() {
-  var x string = "keyboard"
+  var x string = "Kumparan"
   fmt.Println(x)
 }
 
@@ -379,7 +383,7 @@ func main() {
 Go juga memiliki fitur yang memudahkan menuliskan beberapa variabel sekaligus
 
 ```
-var a, b uint8 = 20, 10
+var a, b uint8 = 20, 10, 200
 
 var (
   a uint8 = 20
@@ -409,7 +413,7 @@ a, b := 20, 10
 ```
 func main() {
    FirstName, LastName := "Foo", "Bar"
-   
+
    fmt.Printf("%s\n", LastName)
 }
 
@@ -425,7 +429,7 @@ Apabila kita hanya menggunakan `LastName` saja pada fungsi kita maka akan terjad
 ```
 func main() {
    _, LastName := "Foo", "Bar"
-   
+
    fmt.Printf("%s\n", LastName)
 }
 
@@ -434,6 +438,7 @@ func main() {
 - Dengan menggunakan `_` kita bisa menampung nilai dari sebuah nilai ke dalam sebuah prdefined variabel tersebut, dan dapat dipastikan program kita tetap berjalan sebagaimana mestinya.
 - Akan sering kalian jumpai di bagian fungsi yang melakukan multiple return
 - Akan sering dipakai pas waktu membuat unit test
+
 
 ---
 
@@ -447,12 +452,11 @@ func main() {
 const film string = "Spiderman"
 fmt.Println(film)
 ```
-
 ---
 
 # Operator
 
-- Operator Aritmatika (`+`, `-`, `*`, `/`, `%`) 
+- Operator Aritmatika (`+`, `-`, `*`, `/`, `%`)
 - Operator Perbandingan (`==`, `!=`, `<`, `<=`, `>`, `>=`)
 - Operator Logika (`&&`, `||`, `!`)
 
@@ -491,7 +495,6 @@ func main() {
     }
 }
 ```
-
 ---
 
 ```
@@ -500,13 +503,12 @@ package main
 import "fmt"
 
 func main() {
-    
+
     for i := 1; i <= 10; i++ {
         fmt.Println(i)
     }
 }
 ```
-
 ---
 
 # Keyword break dan continue
@@ -518,7 +520,7 @@ package main
 import "fmt"
 
 func main() {
-    
+
   for i := 1; i <= 10; i++ {
       if i % 2 == 1 {
           continue
@@ -542,7 +544,7 @@ func main() {
 
 # if
 
-- `if` digunakan untuk mengimplementasikan percabangan 
+- `if` digunakan untuk mengimplementasikan percabangan
 - Cabang mana yang akan dijalankan, ditentukan oleh kondisi yang kita spesifikkan
 
 ```
@@ -604,8 +606,8 @@ default: fmt.Println("Unknown Number")
 # Package Dependencies
 
 - Golang tidak memiliki package repository khusus seperti pada ekosistem bahasa lain seperti npm registry, crates registry, packagist
-- Menggunakan git service sebagai penyedia source repository
-- Umumnya package yang kita gunakan 
+- Menggunakan git service sebagai penyedia package dengan cara mengambil langsung source dari repositorynya
+- Umumnya package yang kita gunakan akan ada di git (github, gitlab, dsb)
 - Versi package yang kita gunakan biasanya sesuai dengan versi  git tag, contohnya https://github.com/labstack/echo/tags
 
 ---
@@ -613,17 +615,22 @@ default: fmt.Println("Unknown Number")
 # Package Manager
 
 - go dep
-- go mod <- rekomendasi menggunakan go mod, karena kemudahannya dalam penerapam semantic versioning di dependencynya
+- go mod <- rekomendasi menggunakan go mod, karena kemudahannya dalam penerapan semantic versioning di dependencynya
 
 ---
 
-# FYI, 
+Dahulu sebelum ada era go 1.11 ketika kita mengerjakan project go maka kita harus berada pada gopath folder
 
-Ketika kita menggunakan `go mod` project kita tidak harus kita letakkan ke dalam folder yang terdapat pada `GOPATH` :-P
+---
 
-> # i
-> Justru kalau kita menggunakan go mod tapi kita meletakkannya ke dalam folder `GOPATH` justru akan terjadi error
+![gopath](./images/gopath.png)
 
+---
+
+Namun itu semua berubah ketika `go mod` datang. Adanya `go mod`
+memungkinkan untuk melakukan pengerjaan project diluar `GOPATH`
+
+Apabila kita menggunakan `go mod` tetapi project kita letakkan ke dalam folder `GOPATH` justru akan terjadi error
 
 ---
 
@@ -633,9 +640,9 @@ Ketika kita menggunakan `go mod` project kita tidak harus kita letakkan ke dalam
 - Buatlah folder project kalian di sembarang tempat, jangan di `GOPATH`
 
 ```
-$ mkdir ~/Code/my-project
-$ cd ~/Code/my-project
-$ go mod init gitlab.com/<username>/my-project
+$ mkdir ~/Code/awesome-project
+$ cd ~/Code/awesome-project
+$ go mod init github.com/<username>/awesome-project
 ```
 
 ---
@@ -653,7 +660,7 @@ $ go mod init gitlab.com/<username>/my-project
 Kali ini kita integrasikan echo framework dengan project kita
 
 ```
-$ cd ~/Code/my-project
+$ cd ~/Code/awesome-project
 $ go get github.com/labstack/echo
 ```
 
@@ -665,19 +672,19 @@ maka dengan command ini:
 
 ---
 
-# Latihan 
+# Latihan
 
 1.Implementasikan sample README.md github.com/labstack/echo di main.go kalian
 2.Coba jalankan :-)
 
 ---
 
-# `go.mod` dan `go.sum` sudah exist
+# `go.mod` dan `go.sum` sudah ada
 
-Kamu bisa gunakan 
+Kamu bisa gunakan
 
 ```
-$ cd ~/Code/my-project
+$ cd ~/Code/awesome-project
 $ go get
 ```
 
@@ -688,14 +695,14 @@ Untuk menginstall dependenciesnya
 # Memilih versi yang spesifik
 
 ```
-$ cd ~/Code/my-project
+$ cd ~/Code/awesome-project
 $ go get github.com/labstack/echo@v3.3.9
 ```
 
 # Update versi package
 
 ```
-$ cd ~/Code/my-project
+$ cd ~/Code/awesome-project
 $ go get -u
 $ go get -u github.com/labstack/echo
 ```
@@ -704,6 +711,6 @@ $ go get -u github.com/labstack/echo
 # Eject ke folder vendor
 
 ```
-$ cd ~/Code/my-project
+$ cd ~/Code/awesome-project
 $ go mod vendor
 ```
