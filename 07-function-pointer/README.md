@@ -24,7 +24,7 @@
 
 # Fungsi
 
-```
+```go
 package main
 
 import "fmt"
@@ -38,7 +38,7 @@ func main() {
 
 # Memanggil Fungsi Lain
 
-```
+```go
 package main
 
 import "fmt"
@@ -76,7 +76,7 @@ func sayPagi() {
 
 - Misal kita punya fungsi seperti ini:
 
-```
+```go
 func main() {
   diameter := 10
   keliling := 3.14 * diameter
@@ -90,7 +90,7 @@ func main() {
 
 - Kita ingin agar prosedur menghitung keliling ini, bisa dilakukan di manapun, maka ada baiknya kita pisah ini menjadi fungsi sendiri
 
-```
+```go
 func hitungKeliling(x float64) float64 {
   keliling := 3.14 * x
   return keliling
@@ -107,7 +107,7 @@ func main() {
 
 - Fungsi dalam Go, memiliki format sebagai berikut
 
-```
+```go
 func name(parameter) (result) {
   body
   return result
@@ -143,7 +143,7 @@ func name(parameter) (result) {
 - Go menyediakan fleksibilitas dalam mendeklarasikan sebuah fungsi beserta resultnya
 - Sebagai contoh, keempat pernyataan ini, valid
 
-```
+```go
 func add(x int, y int) int   { return x + y }
 func sub(x, y int) (z int)   { z = x - y; return }
 func first(x int, _ int) int { return x }
@@ -168,7 +168,7 @@ func zero(int, int) int      { return 0 }
 
 ---
 
-```
+```go
 package main
 
 import "fmt"
@@ -181,7 +181,6 @@ func main() {
 func sayPagi(name string) string {
   return "Selamat Pagi " + name
 }
-
 ```
 
 ---
@@ -200,7 +199,7 @@ func sayPagi(name string) string {
 - saat sebuah fungsi dipanggil, maka ia akan menyusun urutan pemanggilan fungsi, yg dikenal dengan nama _call stack_
 - Contoh:
 
-```
+```go
 func main() {
     fmt.Println(f1())
 }
@@ -228,7 +227,7 @@ func f2() int {
 
 Argument yang kita passing ke dalam sebuah fungsi bisa jadi lebih dari satu.
 
-```
+```go
 package main
 
 import "fmt"
@@ -263,7 +262,7 @@ func sayMalam(name, notes string)
 
 # Contoh lengkap
 
-```
+```go
 package main
 
 import "fmt"
@@ -284,7 +283,7 @@ func sayMalam(name, notes string) string {
 
 Apabila terdapat argumen lain yang berbeda dengan argumen lainya bisa di deklarasikan sebagai berikut ini:
 
-```
+```go
 package main
 
 import (
@@ -300,7 +299,6 @@ func main() {
 func sayMalam(name, notes string, age int) string {
   return "Selamat Malam " + name + " ajakan " + notes + " umur " + strconv.Itoa(age)
 }
-
 ```
 
 ---
@@ -313,7 +311,7 @@ func sayMalam(name, notes string, age int) string {
 
 ---
 
-```
+```go
 package main
 
 import "fmt"
@@ -332,7 +330,7 @@ func sayPagi() string {
 
 Contoh pengembalian value berupa array
 
-```
+```go
 package main
 
 import "fmt"
@@ -356,7 +354,7 @@ func otherArrayFunction() []int {
 
 Kita juga bisa mengembalikan `map` dalam sebuah fungsi
 
-```
+```go
 package main
 
 import "fmt"
@@ -373,7 +371,6 @@ func sayPagi() map[string]int {
 
   return m
 }
-
 ```
 
 ---
@@ -399,7 +396,7 @@ func FoobarFunction() (int, string, string) {}
 
 # Contoh
 
-```
+```go
 package main
 import "fmt"
 
@@ -494,6 +491,7 @@ func FindAllUser() {}
 ```
 
 Contoh private method
+
 ```go
 func checkIfUserActive() {}
 ```
@@ -504,7 +502,7 @@ func checkIfUserActive() {}
 
 - Ini adalah cara untuk memanggil sebuah fungsi dengan nol atau lebih parameter
 
-```
+```go
 func add(args ...int) int {
     total := 0
     for _, v := range args {
@@ -532,7 +530,7 @@ func main() {
 
 - Jika dibutuhkan, kita bisa membuat fungsi di dalam sebuah fungsi lain
 
-```
+```go
 func main() {
     add := func(x, y int) int {
         return x + y
@@ -547,7 +545,7 @@ func main() {
 
 - Dengan cara seperti ini, fungsi tadi akan memiliki akses ke variabel lokal
 
-```
+```go
 func main() {
     x := 0
     increment := func() int {
@@ -575,7 +573,7 @@ func main() {
 
 ---
 
-```
+```go
 func makeEvenNumber() func() uint {
     i := uint(0)
     return func() (ret uint) {
@@ -599,7 +597,7 @@ func main() {
 - Sebuah fungsi juga bisa memanggil dirinya sendiri
 - Contohnya, untuk menghitung angka factorial
 
-```
+```go
 func factorial(x uint) uint {
     if x == 0 {
         return 1
@@ -625,7 +623,7 @@ func factorial(x uint) uint {
 
 # Fungsi sebagai parameter
 
-```
+```go
 func square(n int) int     { return n * n }
 func negative(n int) int   { return -n }
 func product(m, n int) int { return m * n }
@@ -645,14 +643,28 @@ fmt.Printf("%T\n", f) // "func(int) int"
 - Karena bisa digunakan sebagai parameter, maka dalam pengaplikasiannya, menjadi lebih mudah bagi kita untuk menggunakan sebuah fungsi di atas sekumpulan data, dengan perilaku tertentu, mirip dengan JavaScript
 - Contohnya, penggunaan `strings.Map` yang mengaplikasikan sebuah fungsi untuk setiap karakter di dalam sebuah string dan di akhir, menyatukan kembali semua karakter-karakter ini
 
-```
-func add1(r rune) rune { return r + 1 }
+---
+
+```go
+package main
+
+import "fmt"
+
+func calkulasi(m func(int) int, n int) int {
+	return m(n) + n
+}
+
+func mm(data int) int {
+	return data * 2
+}
+
+func yy(data int) int {
+	return data * 5
+}
 
 func main() {
-  fmt.Println(strings.Map(add1, "HAL-9000")) // "IBM.:111"
-  fmt.Println(strings.Map(add1, "VMS"))      // "WNT"
-  fmt.Println(strings.Map(add1, "Admix"))    // "Benjy"
-  fmt.Println("Hello World")
+	fmt.Println(calkulasi(mm, 1)) // mm di passing ke sini sebagai funcion luas
+	fmt.Println(calkulasi(yy, 1)) // mm di passing ke sini sebagai funcion
 }
 ```
 
@@ -664,7 +676,7 @@ func main() {
 - Memanggil `nil` akan mengakibatkan `panic`
 - _Mengapakah di bawah ini terjadi panic?_
 
-```
+```go
 var f func(int) int
 f(3) // panic
 ```
