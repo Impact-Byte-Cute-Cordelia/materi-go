@@ -466,7 +466,7 @@ func main() {
 
 # Latihan
 
-1. Buatlah sebuah variabel untuk menyimpan informasi berupa array
+1. Buatlah sebuah variabel untuk menyimpan informasi berupa slice
 2. Buatlah sistem yang mengenerate sebuah bilangan prima yang ditentukan dari x (bilangan min) dan y (bilangan max)
 3. Hasil generate ditampung dalam sebuah variabel pada point (1)
 4. Cetaklah ke dalam layar isi dari variabel pada point (1)
