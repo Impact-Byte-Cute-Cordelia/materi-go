@@ -342,3 +342,15 @@ func main() {
     e := employee.New("Sam", "Adolf", 30, 20)
 }
 ```
+
+---
+
+# Latihan
+
+1. Buatlah sebuah struct bernama sepeda. Sepeda ini memiliki field berikut:
+  - jumlah ban
+  - jumlah gigi
+  - warna
+  Selain itu, struct ini juga memiliki method yang menampilkan waktu tempuh berdasarkan jarak, misal untuk menampilkan waktu tempuh untuk pergi sejauh 20 kilometer, kita bisa memanggil `Sepeda.waktuTempuh(20)` dan ini akan mengembalikan nilai 50, yang berarti waktu tempuh sejauh 20 kilometer adalah 50 menit.
+
+2. Buatlah array berisi 5 sepeda yang berbeda.
