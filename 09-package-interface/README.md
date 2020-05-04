@@ -273,4 +273,5 @@ fmt.Println(farm.Name)
 1. Buatlah struct baru bernama `Motor`, dengan field dan method yang sama dengan struct `Sepeda` seperti di latihan sebelumnya. Bedanya, kali ini. `Motor` akan memiliki kecepatan 2 kali `Sepeda`.
 2. Buatlah interface bernama `Maju` yang berisi 2 method, `cepat()` dan `lambat()`. `cepat()` akan mempercepat kecepatan maju menjadi 2 kali kecepatan awal, dan `lambat()` akan memperlambat kecepatan maju menjadi 1/2 kecepatan awal.
 3. Implementasikan interface `Maju` ini untuk struct `Sepeda` dan `Motor`.
-4. (bonus) Buatlah `Motor` menjadi package yang berbeda dengan `Sepeda` dan pastikan interface `Maju` tetap bisa diimplementasikan di kedua struct ini.
+4. Buatlah `Motor` menjadi package yang berbeda dengan `Sepeda` dan pastikan interface `Maju` tetap bisa diimplementasikan di kedua struct ini.
+5. Di dalam `main.go`, panggil `Sepeda.Maju()` dan `Motor.maju()` dan pastikan keduanya bisa mengeluarkan pesan yang berbeda
