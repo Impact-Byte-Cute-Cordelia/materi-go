@@ -8,7 +8,7 @@ marp: true
 
 Sebelum kita mulai pernahkah kalian:
 
-- Apa itu topologi client and server?
+- Apa itu arsitektur client and server?
 - Bagaimana cara bekerjanya?
 - Berikan contohnya!
 
@@ -31,20 +31,20 @@ Sebelum kita mulai pernahkah kalian:
 # Karakteristik
 
 - Memiki web server sebagai penyedia layanan http protocol
-- Web server tersebut sebagai middleware layanan yang menghubungkan dunia luar ke dalam aplikasi yang kita sediakan
+- Web server tersebut sebagai interface layanan yang menghubungkan dunia luar ke dalam aplikasi yang kita sediakan
 
 ---
 
 # Http Service
 
-Teknik yang digunakan untuk membuat http service biasanya menggunakan metologi salah satu dari dibawah ini
+Teknik yang digunakan untuk membuat http service biasanya menggunakan salah satu metode di bawah:
 
-- Restfull API
+- Restful API
 - GraphQL
 
 ---
 
-# Restfull API
+# Restful API
 
 - REST (Representational State Transfer) adalah salah satu pilihan API yang paling terkenal
 - REST mengekspos sebuah resource dalam bentuk URL HTTP tertentu
@@ -55,7 +55,7 @@ Teknik yang digunakan untuk membuat http service biasanya menggunakan metologi s
 
 # Contoh
 
-Terdapat endpoint `api/users` dalam satu endpoint ini terdapat berbagai fungsi sesuai dengan http verbnya
+Terdapat endpoint `api/users`. Satu endpoint ini memiliki berbagai fungsi sesuai dengan http verbnya
 
 - GET `/api/users` akan mendapatkan seluruh data user list
 - GET `/api/users/1` akan mendapatkan single user dengan id `1`
@@ -67,17 +67,17 @@ Terdapat endpoint `api/users` dalam satu endpoint ini terdapat berbagai fungsi s
 
 # Contoh
 
-Untuk memahami lebih lanjut terkait rest api mari kita coba melakukan prakti dibawah ini
+Untuk memahami lebih lanjut terkait rest api mari kita coba melakukan praktik dibawah ini
 
 - Donwload terlebih dahulu postman https://www.postman.com/
-- Kunjungi http://dummy.restapiexample.com/, disana sudah tersedia endpoint yang bisa digunakan untuk operasi restffull
+- Kunjungi http://dummy.restapiexample.com/, di sana sudah tersedia endpoint yang bisa digunakan untuk operasi restffull
 - Gunakan postman untuk berinteraksi terhadap http service di atas
 
 ---
 
 # Pertanyan
 
-Mana yang dibawah ini yang merupakan http service yang menggunakan restfull
+Di antara HTTP request berikut, manakah yang berupa http service, yang menggunakan restful
 
 1. GET `/api/articles?page=2&limit=10`
 2. POST `/api/articles/10`
@@ -91,7 +91,7 @@ Bisa disebutkan kenapa?
 
 # Authentication
 
-Pada umumnya untuk proses autentikasi tidak menggunakan sesion akan tetapi menggunakan `Authorization key` yang pada umumnya di passing pada:
+Pada umumnya untuk proses autentikasi tidak menggunakan sesion akan tetapi menggunakan `Authorization key` yang pada umumnya diberikan pada:
 - header pada saat melakukan request pada endpoint tertentu
 - body parameter request
 
@@ -104,7 +104,7 @@ Pada umumnya untuk proses autentikasi tidak menggunakan sesion akan tetapi mengg
 
 ---
 
-# Imlementasi Echo Framework
+# Implementasi Echo Framework
 
 Buah project baru
 
@@ -146,7 +146,7 @@ func main() {
 
 ---
 
-# Start echo framework
+# Menjalankan Echo Framework
 
 ```go
 func main() {
@@ -236,7 +236,7 @@ e.GET("/users/:name", func(c echo.Context) error {
 
 # Response
 
-Ada beberapa response yang bisa dikirimkan oleh echo framework, namun pada umumnya yang digunakan
+Ada beberapa response yang bisa dikirimkan oleh Echo Framework, namun pada umumnya yang digunakan
 
 - `c.String(http.StatusOK, "Hello, World!")` apabila ingin mengirimkan berupa plain text response
 - `c.HTML(http.StatusOK, "<strong>Hello, World!</strong>")` berupa html
@@ -263,7 +263,7 @@ Biarkan body di masing-masing handler kosong
 - Penyimpanan sementara data dalam memory
 - Hanya ada ketika sebuah program itu dijalankan dan akan hilang apabila
   program tersebut di stop
-- Hal ini bisa dilakukan dengan go, karena yang bersifat log running process
+- Hal ini bisa dilakukan dengan go, karena bersifat long running process
 
 ---
 
@@ -299,7 +299,7 @@ func (a *Article) ChangeTitle(title string) error {
 
 ---
 
-sedangkan untuk data store kita akan implement 
+sedangkan untuk data store kita akan implementasikan 
 
 ```go
 type ArticleStoreInMemory struct {
@@ -369,9 +369,9 @@ $ curl http://localhost:8080/articles
 
 ---
 
-# Initiasi Data
+# Inisiasi Data
 
-Kita juga bisa melakukan initasi data awal dengan cara merubah pengembalian instance dari `NewArticleStoreInmemory`
+Kita juga bisa melakukan inisiasi data awal dengan cara menguubah pengembalian instance dari `NewArticleStoreInmemory`
 
 ```go
 func NewArticleStoreInmemory() *ArticleStoreInmemory {
@@ -384,7 +384,7 @@ func NewArticleStoreInmemory() *ArticleStoreInmemory {
 ```
 
 sehingga dengan cara seperti ini, ketika melakukan start server maka akan ada 
-default sesuai yang terdapat pada code di atas
+data default sesuai yang terdapat pada code di atas
 
 ---
 
@@ -392,7 +392,7 @@ Coba jalankan ulang dan akses kembali
 
 ---
 
-# Ehance Untuk menyimpan
+# Menambahkan Fitur Penyimpanan
 
 ```go
 func (store *ArticleStoreInmemory) Save(article *Article) error {
