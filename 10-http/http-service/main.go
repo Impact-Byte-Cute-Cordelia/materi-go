@@ -22,7 +22,7 @@ func main() {
 		body := c.FormValue("body")
 
 		// create article instance
-		article := model.CreateArticle(title, body)
+		article, _ := model.CreateArticle(title, body)
 
 		store.Save(article)
 

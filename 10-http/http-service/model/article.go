@@ -6,9 +6,9 @@ type Article struct {
 	Body  string
 }
 
-func CreateArticle(title, body string) *Article {
+func CreateArticle(title, body string) (*Article, error) {
 	return &Article{
 		Title: title,
 		Body:  body,
-	}
+	}, nil
 }
