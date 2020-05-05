@@ -111,7 +111,7 @@ Buah project baru
 ```sh
 $ mkdir http-service
 $ go mod init github.com/purwandi/http-service
-$ get -u github.com/labstack/echo
+$ go get -u github.com/labstack/echo
 $ touch main.go
 ```
 
@@ -178,13 +178,14 @@ $ go run main.go
 # Request
 
 - Gunakan `c.QueryParam('field)` untuk mengambil value  query string dari sebuah request
-- Gunakan `c.FromValue('field')` untuk mengambil post calue dari sebuah request
+- Gunakan `c.FormValue('field')` untuk mengambil post calue dari sebuah request
+- Gunakan `c.Param('field')` untuk mengambil post calue dari sebuah request
 
 ---
 
 # QueryParam
 
-Semisal kita mengakses sebuah web service `http://localhost:8080/user?user=foobar` maka untuk 
+Semisal kita mengakses sebuah web service `http://localhost:8080/?user=foobar` maka untuk 
 mendapatkan nilai dari query params user adalah dengan menggunakan queryparams
 
 ```go
@@ -214,11 +215,22 @@ func main() {
   })
   e.Logger.Fatal(e.Start(":8080"))
 }
-
-
 ```
 
 menggunakan postman untuk mengirimkan postdata atau `curl -d "user=foobar&form=dsds" http://localhost:8080/`
+
+---
+
+# Param
+
+```go
+e.GET("/users/:name", func(c echo.Context) error {
+	name := c.Param("name")
+	return c.String(http.StatusOK, name)
+})
+```
+
+`curl http://localhost:1323/users/Joe`
 
 ---
 
