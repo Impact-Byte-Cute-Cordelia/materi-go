@@ -1,12 +1,11 @@
 package model
 
-// ArticleStoreInmemory is to article store in memory implementation
+// ArticleStoreInmemory is to ...
 type ArticleStoreInmemory struct {
 	ArticleMap []Article
 }
 
-// NewArticleStoreInmemory to create ArticleStoreInmemory instance
-func NewArticleStoreInmemory() *ArticleStoreInmemory {
+func NewArticleStoreInmemory() ArticleStore {
 	return &ArticleStoreInmemory{
 		ArticleMap: []Article{
 			Article{ID: 1, Title: "Membuat website", Body: "Hallo ini bydi"},
@@ -15,12 +14,10 @@ func NewArticleStoreInmemory() *ArticleStoreInmemory {
 	}
 }
 
-// All to get all record
 func (store *ArticleStoreInmemory) All() []Article {
 	return store.ArticleMap
 }
 
-// Save for save
 func (store *ArticleStoreInmemory) Save(article *Article) error {
 	lastID := len(store.ArticleMap)
 
@@ -33,7 +30,6 @@ func (store *ArticleStoreInmemory) Save(article *Article) error {
 	return nil
 }
 
-// Find for find
 func (store *ArticleStoreInmemory) Find(id int) *Article {
 	article := Article{}
 	for _, item := range store.ArticleMap {
@@ -45,7 +41,6 @@ func (store *ArticleStoreInmemory) Find(id int) *Article {
 	return &article
 }
 
-// Update for update article
 func (store *ArticleStoreInmemory) Update(article *Article) error {
 	for index, item := range store.ArticleMap {
 		if item.ID == article.ID {
@@ -56,7 +51,6 @@ func (store *ArticleStoreInmemory) Update(article *Article) error {
 	return nil
 }
 
-// Delete to delete article
 func (store *ArticleStoreInmemory) Delete(article *Article) error {
 	articles := []Article{}
 

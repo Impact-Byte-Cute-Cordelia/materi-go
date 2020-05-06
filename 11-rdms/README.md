@@ -151,7 +151,7 @@ $ docker rm database
 ```
 $ docker create \	
      -e MYSQL_ROOT_PASSWORD=password \
-     -e MYSQL_DATABASE=database \
+     -e MYSQL_DATABASE=nama_database \
      --name database mysql:5.7
 $ docker start database
 $ docker stop database
@@ -168,7 +168,7 @@ $ docker rm database
 ```sh
 $ docker create \	
      -e MYSQL_ROOT_PASSWORD=password \
-     -e MYSQL_DATABASE=database \
+     -e MYSQL_DATABASE=nama_database \
      -p 3307:3306 \
      --name database_app mysql:5.7
 $ docker start database_app
@@ -335,10 +335,11 @@ func main() {
 
   // init data store
   if driver == "inmemory" {
-    store := model.NewArticleStoreInmemory()
-  } else {
-    store := model.NewArticleStoreMySQL()
-  }
+    store = model.NewArticleStoreInmemory()
+  } 
+  // else {
+  //   store = model.NewArticleStoreMySQL()
+  // }
 
   // Create new instance echo framework
   e := echo.New()
@@ -431,7 +432,7 @@ type ArticleStoreMySQL struct {
 }
 
 func NewArticleStoreMySQL() ArticleStore {
-  dsn := "root:password@localhost:3307/database?parseTime=true&clientFoundRows=true"
+  dsn := "root:password@tcp(localhost:3307)/nama_database?parseTime=true&clientFoundRows=true"
   db, err := sql.Open("mysql", dsn)
   if err != nil {
     panic(err)
